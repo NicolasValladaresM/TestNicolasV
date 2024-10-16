@@ -8,7 +8,9 @@ import { useNavigate } from "react-router-dom";
 import ModalDialog from "../../../components/modal/modal";
 import Modal from "react-modal";
 import modal from "/modal.png";
+import close from "../../../assets/close.svg";
 
+Modal.setAppElement("#root"); 
 import "./resume.css";
 
 const Resume = () => {
@@ -19,12 +21,6 @@ const Resume = () => {
   const navigate = useNavigate();
 
   console.log("Valor de amount", amount);
-
-  console.log("Valores desde contextos", origin, final, amount, rate);
-
-  //  console.log("Valres que irian en la api", origin, final)
-
-  
   
   const { MakeExchange } = Exchange();
 
@@ -40,10 +36,16 @@ const Resume = () => {
     console.log("Valres que irian en la api v2", origin, final, amount);
   };
 
+  const handleCloseModal = () => {
+    closeModal();
+    navigate("/home");
+  };
+
+
   useEffect(() => {
   if (!amount || parseFloat(amount) <= 0) {
     console.log("No hay monto a intercambiar");
-    // navigate("/interchange");
+     navigate("/interchange");
   } else {
     console.log(`Origin: ${origin}, Final: ${final}, Amount: ${amount} Desde el Resume`);
   }
@@ -96,15 +98,13 @@ const Resume = () => {
 
           <Modal
             isOpen={modalIsOpen}
-            onRequestClose={closeModal}
+            onRequestClose={handleCloseModal}
             className="Modal"
             overlayClassName="OverlayModal"
             contentLabel="Example Modal"
           >
             <div className="Modal-content">
-              <button onClick={closeModal} className="close">
-                Cerrar
-              </button>
+              <img src={close} alt="close" className="close"  onClick={handleCloseModal} />
               <img src={modal} alt="modal" className="modal-image" />
               <h1>Intercambio exitoso</h1>
               <p>Ya cuentas con los {final} en tu saldo.</p>
