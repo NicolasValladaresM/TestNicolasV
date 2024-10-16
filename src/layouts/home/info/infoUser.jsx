@@ -4,19 +4,11 @@ import History from "../../../components/transactions/history";
 import GetBalance from "../../../services/getBalance";
 import coin from "/coin.png";
 import "./infoUser.css";
+import { BalanceContext } from "../../../context/balanceContext";
 
 const InfoUser = () => {
-  const { GetBalancesData } = GetBalance();
-  const [name, setName] = useState("");
-
-  useEffect(() => {
-    const fetchName = async () => {
-      const data = await GetBalancesData();
-      setName(data.first_name);
-      console.log("El name es  ", name);
-    };
-    fetchName();
-  }, []);
+  
+  const { name } = useContext(BalanceContext);
 
   return (
     <div className="info">

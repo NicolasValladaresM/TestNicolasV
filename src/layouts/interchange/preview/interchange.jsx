@@ -11,7 +11,7 @@ import GetMultiPrices from "../../../services/getMultiPrices";
 import { PricesContext } from "../../../context/pricesContext";
 import { TransContext } from "../../../context/transContext";
 import { useNavigate } from "react-router-dom";
-import GetPricesRate from "../../../services/getRate";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Bounce } from "react-toastify";
@@ -66,7 +66,7 @@ const Interchange = () => {
   const { usd, setUSD, usdt, setUSDT, btc, setBTC } = useContext(PricesContext);
   const { setOrigin, setFinal, setAmount, setRate, setFromAmountResume } =
     useContext(TransContext);
-  const { GetRateData } = GetPricesRate();
+ 
   const [selectedFrom, setSelectedFrom] = useState("USD");
   const [selectedTo, setSelectedTo] = useState("USDT");
   const [fromAmount, setFromAmount] = useState("");
@@ -205,7 +205,7 @@ const Interchange = () => {
     };
     localStorage.setItem("transactionData", JSON.stringify(transactionData));
 
-    await GetRateData();
+    
     const valorRate = transactionData.toAmount / transactionData.fromAmount;
     setRate(valorRate);
 

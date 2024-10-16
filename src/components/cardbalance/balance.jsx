@@ -1,5 +1,5 @@
 import "./balance.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useContext } from "react";
 import { BalanceContext } from "../../context/balanceContext";
 import GetBalance from "../../services/getBalance";

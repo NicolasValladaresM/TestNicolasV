@@ -1,8 +1,10 @@
 import  useApiErrorHandler  from "../services/apiErrorHandler";
-
+import { BalanceContext } from "../context/balanceContext";
+import { useContext } from "react";
 
 const GetBalance = () => {
   const { handleApiResponse } = useApiErrorHandler();
+  const { setName } = useContext(BalanceContext);
 
   const GetBalancesData = async () => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -29,6 +31,7 @@ const GetBalance = () => {
       });
       await handleApiResponse(response);
       const data = await response.json();
+      setName(data.data.attributes.first_name);
       return data.data.attributes;
     } catch (error) {
       console.log("Error al obtener balances del usuario", error);
