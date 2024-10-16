@@ -52,6 +52,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: auto;
+  cursor: pointer;
 
 
 }
@@ -108,11 +109,15 @@
 }
 
 .login h1 {
-  font-family: "Open Sans", Helvetica;
-  font-size: 48px;
-  font-weight: 600;
+
   margin-bottom: 140px;
   margin-top: 20%;
+
+  color: #010e11;
+  font-size: 48px;
+  font-weight: 600;
+  font-family: Open Sans, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
 }
 
 .login input {

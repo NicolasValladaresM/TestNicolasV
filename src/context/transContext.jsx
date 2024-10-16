@@ -9,10 +9,7 @@ export const TransProvider = ({ children }) => {
   const [rate, setRate] = useState(null);
   const [fromAmountResume, setFromAmountResume] = useState(null);
 
-  useEffect(() => {
-    console.log('origin:', origin, 'final:', final, 'amount:', amount, 'Desde contexto Transconstext');
-  }, [origin, final, amount]);
-  
+
 
   return (
     <TransContext.Provider

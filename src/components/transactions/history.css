@@ -39,16 +39,14 @@
 
 }
 
-.amount {
+.amountresult {
 
     font-size: 16px;
     font-weight: 600;
-    font-family: Open Sans, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-        'Liberation Sans', sans-serif;
-    width: 180.517px;
+    font-family: Open Sans, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
     height: min-content;
     text-align: end;
-    flex-direction: column;
+    flex-shrink: 0;
 }
 
 .transaction {
@@ -63,10 +61,10 @@
 
 }
 
-.amount.positive {
+.amountresult.positive {
     color: #05bcb9;
 }
 
-.amount.negative {
+.amountresult.negative {
     color: red;
 }

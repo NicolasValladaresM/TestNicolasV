@@ -136,6 +136,7 @@ h2 {
   background-position: center;
   background-repeat: no-repeat;
   background-size: auto;
+  cursor: pointer;
 }
 
 .next:hover {
@@ -153,6 +154,7 @@ h2 {
   font-size: 16px;
   border-radius: 6px;
   border: 1px solid rgb(61, 132, 142);
+  cursor: pointer;
 
 }
 

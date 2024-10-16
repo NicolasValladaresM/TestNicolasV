@@ -19,8 +19,7 @@ const History = () => {
         const data = await GetHistoryProfile();
         setHistory(data);
       } catch (error) {
-        console.log("Error al obtener el historial del usuario", error);
-        setError("No se pudo obtener el historial. Intente más tarde.");
+        setError("No se pudo obtener el historial.", error);
       }
       setLoading(false);
     };
@@ -41,7 +40,7 @@ const History = () => {
           <ul className="list">
             {history.map((item) => {
               const isSent = item.attributes.sender_email === user.email;
-              const amount = isSent
+              const amountresult = isSent
                 ? `-${
                     item.attributes.amount
                   } ${item.attributes.currency.toUpperCase()}`
@@ -49,15 +48,15 @@ const History = () => {
                     item.attributes.amount
                   } ${item.attributes.currency.toUpperCase()}`;
               const amountClass = isSent
-                ? "amount negative"
-                : "amount positive";
+                ? "amountresult negative"
+                : "amountresult positive";
 
               return (
                 <li key={item.id} className="list-item">
                   <p className="transaction-type">
                     {isSent ? "Enviaste" : "Recibiste"}
                   </p>
-                  <p className={amountClass}>{amount}</p>
+                  <p className={amountClass}>{amountresult}</p>
                 </li>
               );
             })}
