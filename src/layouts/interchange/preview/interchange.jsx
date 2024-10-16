@@ -65,7 +65,7 @@ const customStyles = {
 const Interchange = () => {
   const { GetPricesData } = GetMultiPrices();
   const { usd, setUSD, usdt, setUSDT, btc, setBTC } = useContext(PricesContext);
-  const {setOrigin,setFinal,setAmount,setRate,setFromAmountResume,final,origin} = useContext(TransContext);
+  const {setOrigin,setFinal,setAmount,setRate,setFromAmountResume} = useContext(TransContext);
   const { GetRateData } = GetPricesRate();
   const [selectedFrom, setSelectedFrom] = useState("BTC");
   const [selectedTo, setSelectedTo] = useState("USDT");

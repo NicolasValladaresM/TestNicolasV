@@ -1,4 +1,9 @@
+import  useApiErrorHandler  from "../services/apiErrorHandler";
+
+
 const GetHistorical = () => {
+  const { handleApiResponse } = useApiErrorHandler();
+ 
   const GetHistoryProfile = async () => {
     const user = JSON.parse(localStorage.getItem("user"));
 
@@ -25,7 +30,7 @@ const GetHistorical = () => {
           },
         }
       );
-
+      await handleApiResponse(response);
       const data = await response.json();
       return data.data;
     } catch (error) {

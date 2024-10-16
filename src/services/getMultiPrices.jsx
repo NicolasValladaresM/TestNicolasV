@@ -1,4 +1,8 @@
+import  useApiErrorHandler  from "../services/apiErrorHandler";
+
 const GetMultiPrices = () => {
+  const { handleApiResponse } = useApiErrorHandler();
+
   const GetPricesData = async () => {
     const user = JSON.parse(localStorage.getItem("user"));
 
@@ -25,7 +29,7 @@ const GetMultiPrices = () => {
           },
         }
       );
-
+      await handleApiResponse(response);
       const data = await response.json();
       return data.prices;
     } catch (error) {

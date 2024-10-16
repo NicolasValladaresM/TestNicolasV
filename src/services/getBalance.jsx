@@ -1,4 +1,9 @@
+import  useApiErrorHandler  from "../services/apiErrorHandler";
+
+
 const GetBalance = () => {
+  const { handleApiResponse } = useApiErrorHandler();
+
   const GetBalancesData = async () => {
     const user = JSON.parse(localStorage.getItem("user"));
 
@@ -22,7 +27,7 @@ const GetBalance = () => {
           expiry: expiry,
         },
       });
-
+      await handleApiResponse(response);
       const data = await response.json();
       return data.data.attributes;
     } catch (error) {
