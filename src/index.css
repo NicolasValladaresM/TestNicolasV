@@ -1,0 +1,25 @@
+:root {
+  color-scheme: light dark;
+  /* background-color: #242424; */
+  background-color: #ffffff;
+  text-rendering: optimizeLegibility;
+
+  margin: 0 auto;
+  box-sizing: border-box;
+
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+body {
+
+  display: flex;
+  place-items: center;
+  margin: 0;
+
+
+
+}

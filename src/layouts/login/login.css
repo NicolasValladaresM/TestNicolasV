@@ -1,0 +1,135 @@
+.login {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+
+}
+
+.inputs-btn {
+  display: flex;
+  flex-direction: column;
+
+  margin-right: 20%;
+  gap: 10px;
+}
+
+.login-form {
+  margin-left: 10%;
+  width: 50%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20%;
+  padding-right: 0px;
+}
+
+.login-form p {
+  font-family: "Open Sans", Helvetica;
+  margin: 0;
+  padding: 0;
+}
+
+.credentials {
+  font-family: "Open Sans", Helvetica;
+  font-size: 14px;
+}
+
+.login-button {
+  display: flex;
+  align-items: center;
+  margin-top: 2%;
+  border-radius: 6px;
+  gap: 10px;
+  justify-content: center;
+  padding: 16px 12px;
+  width: 100%;
+  background-image: linear-gradient(90deg, #05bcb9ff 0%, #167287ff 100%);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
+
+
+}
+
+.login-button:hover {
+  background-color: rgb(61, 132, 142);
+}
+
+.password-input-container {
+  position: relative;
+}
+
+.password-input-container input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.password-toggle-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+
+.email-input-container {
+  position: relative;
+}
+
+.email-input-container input {
+  width: 100%;
+  padding-right: 40px;
+
+}
+
+.email-valid-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+
+
+
+
+
+/* background-color: rgb(61, 132, 142); */
+.forget {
+  text-align: right;
+  font-size: 12px;
+  margin-top: 10px;
+  margin-right: 0.5em;
+}
+
+.login h1 {
+  font-family: "Open Sans", Helvetica;
+  font-size: 48px;
+  font-weight: 600;
+  margin-bottom: 140px;
+  margin-top: 20%;
+}
+
+.login input {
+  border: 1px solid rgba(185, 193, 194, 1);
+  background-color: #ffffff;
+  font-size: 16px;
+  align-items: flex-start;
+  border: 1px solid;
+  border-radius: 6px;
+  display: flex;
+  gap: 10px;
+  padding: 16px 12px;
+  width: 100%;
+  color: #000000;
+}
+
+.amico {
+  size: 100%;
+  margin-right: 10%;
+}
