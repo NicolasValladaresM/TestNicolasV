@@ -14,6 +14,7 @@ const GetHistorical = () => {
     const accessToken = user.access_token;
     const uid = user.uid;
     const client = user.client;
+    //const client = "1221mk";
     const expiry = user.expiry;
 
     try {

@@ -17,7 +17,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { Bounce } from "react-toastify";
 import GetBalance from "../../../services/getBalance";
 
-
 const options = [
   { value: "USD", label: <img src={usdcIcon} alt="USD" />, icon: dollarIcon },
   { value: "BTC", label: <img src={btcIcon} alt="BTC" />, icon: btcIcon },
@@ -65,9 +64,10 @@ const customStyles = {
 const Interchange = () => {
   const { GetPricesData } = GetMultiPrices();
   const { usd, setUSD, usdt, setUSDT, btc, setBTC } = useContext(PricesContext);
-  const {setOrigin,setFinal,setAmount,setRate,setFromAmountResume} = useContext(TransContext);
+  const { setOrigin, setFinal, setAmount, setRate, setFromAmountResume } =
+    useContext(TransContext);
   const { GetRateData } = GetPricesRate();
-  const [selectedFrom, setSelectedFrom] = useState("BTC");
+  const [selectedFrom, setSelectedFrom] = useState("USD");
   const [selectedTo, setSelectedTo] = useState("USDT");
   const [fromAmount, setFromAmount] = useState("");
   const [toAmount, setToAmount] = useState(0);
@@ -77,7 +77,6 @@ const Interchange = () => {
 
   const navigate = useNavigate();
 
-  
   useEffect(() => {
     const fetchPrices = async () => {
       const data = await GetPricesData();
@@ -129,16 +128,21 @@ const Interchange = () => {
     }
   }, [fromAmount, selectedFrom, selectedTo]);
 
-  
-
   useEffect(() => {
     setOrigin(selectedFrom);
     setFromAmountResume(fromAmount);
     setAmount(fromAmount);
     setFinal(selectedTo);
     setAmount(fromAmount);
-  }, [fromAmount, selectedFrom, setOrigin, setAmount, setFinal, selectedTo, setFromAmountResume]);
-
+  }, [
+    fromAmount,
+    selectedFrom,
+    setOrigin,
+    setAmount,
+    setFinal,
+    selectedTo,
+    setFromAmountResume,
+  ]);
 
   useEffect(() => {
     if (selectedFrom === "BTC" && parseFloat(fromAmount) < 0.0004) {
@@ -168,14 +172,14 @@ const Interchange = () => {
     fetchProfileBalances();
   }, [selectedFrom]);
 
-
   const handleContinue = async () => {
     if (!fromAmount || fromAmount === 0) {
-      notify(); 
+      notify();
       return;
     }
 
-    const availableBalance = parseFloat(balance[selectedFrom.toLowerCase()]) || 0;
+    const availableBalance =
+      parseFloat(balance[selectedFrom.toLowerCase()]) || 0;
     if (parseFloat(fromAmount) > availableBalance) {
       toast.error("El monto a intercambiar excede al saldo actual", {
         position: "bottom-right",
@@ -189,8 +193,6 @@ const Interchange = () => {
       return;
     }
 
-
-
     setOrigin(selectedFrom);
     setFinal(selectedTo);
     setAmount(fromAmount);
@@ -202,7 +204,7 @@ const Interchange = () => {
       toAmount,
     };
     localStorage.setItem("transactionData", JSON.stringify(transactionData));
-    
+
     await GetRateData();
     const valorRate = transactionData.toAmount / transactionData.fromAmount;
     setRate(valorRate);
@@ -216,11 +218,12 @@ const Interchange = () => {
       <div className="changer">
         <div className="titles">
           <h1 className="h1">¿Qué deseas intercambiar?</h1>
-          <h2>
-          <h2>
-              Saldo disponible: {loadingBalance ? "Cargando..." : (balance[selectedFrom.toLowerCase()] || 0) + " " + selectedFrom}
-            </h2>
 
+          <h2>
+            Saldo disponible:{" "}
+            {loadingBalance
+              ? "Cargando..."
+              : (balance[selectedFrom.toLowerCase()] || 0) + " " + selectedFrom}
           </h2>
         </div>
 
@@ -246,8 +249,8 @@ const Interchange = () => {
                   min={selectedFrom === "BTC" ? "0.0004" : "0.0001"}
                   step="0.0001"
                   value={fromAmount}
-                  onChange={(e) => setFromAmount(parseFloat(e.target.value) || 0)}
-                  />
+                  onChange={(e) => setFromAmount(parseFloat(e.target.value))}
+                />
               </div>
             </div>
             <h3 className="subs">Quiero recibir</h3>
@@ -268,27 +271,26 @@ const Interchange = () => {
                 readOnly
               />
             </div>
-          
-          <div className="footerNav">
-            <button className="back">Atras</button>
-            <button type="button" className="next" onClick={handleContinue}>
-              Continuar
-            </button>
-            <ToastContainer
-              position="bottom-right"
-              // autoClose={5000}
-              autoClose={99999999999}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-              theme="light"
-              transition={Bounce}
-            />
-          </div>
+
+            <div className="footerNav">
+              <button className="back">Atras</button>
+              <button type="button" className="next" onClick={handleContinue}>
+                Continuar
+              </button>
+              <ToastContainer
+                position="bottom-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                transition={Bounce}
+              />
+            </div>
           </form>
         </div>
       </div>

@@ -10,7 +10,11 @@ const useApiErrorHandler = () => {
       toast.error("Sesión expirada. Redirigiendo hacia login...", {
         transition: Bounce,
       });
-      navigate("/login");
+      console.log("Error 401: Sesión expirada");
+
+      setTimeout(() => {
+        navigate("/login");
+      }, 3000);
       throw new Error("Error 401: Sesión expirada");
     }
     return response;
