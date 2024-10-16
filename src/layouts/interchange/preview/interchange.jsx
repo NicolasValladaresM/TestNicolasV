@@ -72,7 +72,7 @@ const Interchange = () => {
   const [fromAmount, setFromAmount] = useState("");
   const [toAmount, setToAmount] = useState(0);
   const { GetBalancesData } = GetBalance();
-
+  const [loadingBalance, setLoadingBalance] = useState(true);
   const [balance, setBalance] = useState({});
 
   const navigate = useNavigate();
@@ -160,8 +160,10 @@ const Interchange = () => {
 
   useEffect(() => {
     const fetchProfileBalances = async () => {
+      setLoadingBalance(true);
       const data = await GetBalancesData();
       setBalance(data.balances);
+      setLoadingBalance(false);
     };
     fetchProfileBalances();
   }, [selectedFrom]);
@@ -172,6 +174,22 @@ const Interchange = () => {
       notify(); 
       return;
     }
+
+    const availableBalance = parseFloat(balance[selectedFrom.toLowerCase()]) || 0;
+    if (parseFloat(fromAmount) > availableBalance) {
+      toast.error("El monto a intercambiar excede al saldo actual", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return;
+    }
+
+
 
     setOrigin(selectedFrom);
     setFinal(selectedTo);
@@ -199,8 +217,10 @@ const Interchange = () => {
         <div className="titles">
           <h1 className="h1">¿Qué deseas intercambiar?</h1>
           <h2>
-            Saldo disponible: {balance[selectedFrom.toLowerCase()] || 0}{" "}
-            {selectedFrom}
+          <h2>
+              Saldo disponible: {loadingBalance ? "Cargando..." : (balance[selectedFrom.toLowerCase()] || 0) + " " + selectedFrom}
+            </h2>
+
           </h2>
         </div>
 
@@ -256,7 +276,8 @@ const Interchange = () => {
             </button>
             <ToastContainer
               position="bottom-right"
-              autoClose={5000}
+              // autoClose={5000}
+              autoClose={99999999999}
               hideProgressBar={false}
               newestOnTop={false}
               closeOnClick
