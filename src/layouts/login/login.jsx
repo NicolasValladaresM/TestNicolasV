@@ -7,9 +7,7 @@ import eyeOffIcon from "../../assets/eye_off.svg";
 import checkIcon from "../../assets/check.svg";
 import { useEffect, useState } from "react";
 
-
 const Login = () => {
-
   const navigate = useNavigate();
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -17,7 +15,6 @@ const Login = () => {
       navigate("/home");
     }
   }, [navigate]);
- 
 
   const {
     email,
@@ -33,7 +30,6 @@ const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(false);
 
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email || !password) {

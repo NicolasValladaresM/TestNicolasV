@@ -25,13 +25,12 @@ const Balance = () => {
       <div className="card">
         <div className="with-icon">
           <p className="type-balance">Dolares </p>
-          <img src={dollar} alt="dolar" width="24" height="24"/>
+          <img src={dollar} alt="dolar" width="24" height="24" />
         </div>
         <p className="valores">{balance?.usd ?? "Cargando..."}</p>
       </div>
       <div className="card">
         <div className="with-icon">
-        
           <p className="type-balance">Bitcoin </p>
           <img src={btc} alt="btc" width="24" height="24" />
         </div>
@@ -43,7 +42,7 @@ const Balance = () => {
           <img src={usdt} alt="usdt" width="24" height="24" />
         </div>
         <p className="valores">{balance?.usdt ?? "Cargando..."}</p>
-        </div>
+      </div>
     </div>
   );
 };

@@ -7,7 +7,6 @@ import "./infoUser.css";
 import { BalanceContext } from "../../../context/balanceContext";
 
 const InfoUser = () => {
-  
   const { name } = useContext(BalanceContext);
 
   return (
