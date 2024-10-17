@@ -9,12 +9,15 @@ import ModalDialog from "../../../components/modal/modal";
 import Modal from "react-modal";
 import modal from "/modal.png";
 import close from "../../../assets/close.svg";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Bounce } from "react-toastify";
 
 Modal.setAppElement("#root");
 import "./resume.css";
 
 const Resume = () => {
-  const { origin, final, amount, rate, fromAmountResume } =
+  const { origin, final, amount, rate, fromAmountResume, toAmountResume } =
     useContext(TransContext);
   const { openModal, closeModal, modalIsOpen } = ModalDialog();
 
@@ -24,14 +27,35 @@ const Resume = () => {
 
   const { MakeExchange } = Exchange();
 
+  const notify = () => {
+    toast.error("Saldo insuficiente para el administrador o los balances han caducado.", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+
   const handleConfirm = async () => {
     console.log("Confirmo la transacción");
 
-    // setOrigin(origin.toLowerCase());
-    // setOrigin(final.toLowerCase());
+      const errorOccurred = await MakeExchange();
 
+
+    if (errorOccurred) {
+      notify()
+      console.log("Error al intercambiar");
+      // navigate("/interchange");
+      return;
+    }
     openModal();
-    MakeExchange();
+   
+
+
 
     console.log("Valres que irian en la api v2", origin, final, amount);
   };
@@ -85,7 +109,7 @@ const Resume = () => {
           <div className="amount">
             <p className="description">Total a recibir</p>
             <p className="amount-result">
-              {amount} {final}
+              {toAmountResume} {final}
             </p>
           </div>
         </div>
@@ -116,9 +140,25 @@ const Resume = () => {
               <h1>Intercambio exitoso</h1>
               <p>Ya cuentas con los {final} en tu saldo.</p>
             </div>
+
+            
           </Modal>
         </div>
       </div>
+
+      <ToastContainer
+                position="bottom-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                transition={Bounce}
+              />
     </div>
   );
 };

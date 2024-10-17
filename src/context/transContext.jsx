@@ -8,6 +8,7 @@ export const TransProvider = ({ children }) => {
   const [amount, setAmount] = useState(null);
   const [rate, setRate] = useState(null);
   const [fromAmountResume, setFromAmountResume] = useState(null);
+  const [toAmountResume, setToAmountResume] = useState(null);
 
 
 
@@ -24,6 +25,9 @@ export const TransProvider = ({ children }) => {
         rate,
         setFromAmountResume,
         fromAmountResume,
+        setToAmountResume,
+        toAmountResume,
+
       }}
     >
       {children}

@@ -2,7 +2,7 @@ import { TransContext } from "../context/transContext";
 import { useContext } from "react";
 
 const Exchange = () => {
-  const { origin, final, amount, fromAmountResume } = useContext(TransContext);
+  const { origin, final, amount } = useContext(TransContext);
 
   const MakeExchange = async () => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -38,7 +38,7 @@ const Exchange = () => {
             body: JSON.stringify({
               currency_sent: originLower,
               currency_received: finalLower,
-              amount_sent: fromAmountResume,
+              amount_sent: amount,
             }),
           }
         );
@@ -46,17 +46,28 @@ const Exchange = () => {
 
         if (!response.ok) {
           console.log("Error en la solicitud:", data);
+
+
+          if (data.error === 'Insufficient balance for admin'|| data.error === 'Los precios han caducado, por favor intente de nuevo'){
+            console.log("Balance insuficiente por administrador o balances caducados");
+            return true;
+          }
+
         } else {
           console.log("Solicitud exitosa:", data);
+          return false
         }
 
         console.log(data);
         console.log("Transacción enviada", originLower, finalLower, amount);
       } else {
         console.log("Falta seleccionar el tipo de transacción");
+        return true
       }
     } catch (error) {
       console.log("Error al enviar la transacción", error);
+      return true
+
     }
   };
   return { MakeExchange };

@@ -15,8 +15,6 @@ import { BalanceProvider } from "./context/balanceContext";
 import { HistoryProvider } from "./context/historicalContext";
 import { PricesProvider } from "./context/pricesContext";
 import { TransProvider } from "./context/transContext";
-import { Bounce } from "react-toastify";
-import { ToastContainer } from "react-toastify";
 // import { ExchangeRateProvider } from "./context/exchangeRateContext";
 
 const RouteProtected = ({ children }) => {
@@ -78,19 +76,7 @@ function App() {
           </Routes>
         </Router>
       </InfoProvider>
-        <ToastContainer
-          position="bottom-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-          transition={Bounce}
-        />
+     
     </UserContextProvider>
   );
 }

@@ -64,7 +64,7 @@ const customStyles = {
 const Interchange = () => {
   const { GetPricesData } = GetMultiPrices();
   const { usd, setUSD, usdt, setUSDT, btc, setBTC } = useContext(PricesContext);
-  const { setOrigin, setFinal, setAmount, setRate, setFromAmountResume } =
+  const { setOrigin, setFinal, setAmount, setRate, setFromAmountResume, setToAmountResume } =
     useContext(TransContext);
  
   const [selectedFrom, setSelectedFrom] = useState("USD");
@@ -131,6 +131,7 @@ const Interchange = () => {
   useEffect(() => {
     setOrigin(selectedFrom);
     setFromAmountResume(fromAmount);
+    setToAmountResume(toAmount);
     setAmount(fromAmount);
     setFinal(selectedTo);
     setAmount(fromAmount);
@@ -142,6 +143,8 @@ const Interchange = () => {
     setFinal,
     selectedTo,
     setFromAmountResume,
+    setToAmountResume,
+    toAmount,
   ]);
 
   useEffect(() => {
@@ -178,8 +181,7 @@ const Interchange = () => {
       return;
     }
 
-    const availableBalance =
-      parseFloat(balance[selectedFrom.toLowerCase()]) || 0;
+    const availableBalance =parseFloat(balance[selectedFrom.toLowerCase()]) || 0;
     if (parseFloat(fromAmount) > availableBalance) {
       toast.error("El monto a intercambiar excede al saldo actual", {
         position: "bottom-right",
@@ -192,6 +194,20 @@ const Interchange = () => {
       });
       return;
     }
+
+    //Control de error al abonar bitcoins
+    // if (selectedTo === "BTC") {
+    //   toast.error("Balance Insuficiente por administrador (error hacia bitcoin)", {
+    //     position: "bottom-right",
+    //     autoClose: 5000,
+    //     hideProgressBar: false,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     progress: undefined,
+    //   });
+    //   return; 
+    // }
 
     setOrigin(selectedFrom);
     setFinal(selectedTo);
@@ -249,7 +265,8 @@ const Interchange = () => {
                   min={selectedFrom === "BTC" ? "0.0004" : "0.0001"}
                   step="0.0001"
                   value={fromAmount}
-                  onChange={(e) => setFromAmount(parseFloat(e.target.value))}
+                  onChange={(e) => setFromAmount(e.target.value === "" ? "" : parseFloat(e.target.value))} 
+
                 />
               </div>
             </div>
@@ -267,7 +284,7 @@ const Interchange = () => {
                 className="input-noIcon"
                 min="0.0001"
                 step="0.0001"
-                value={toAmount}
+                value={toAmount || ""}
                 readOnly
               />
             </div>
