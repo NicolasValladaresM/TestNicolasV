@@ -24,7 +24,7 @@ const useLogin = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
-            Authorization: `Bearer ${API_KEY}`,
+            // Authorization: `Bearer ${API_KEY}`,
             "app-name": "ANGIE",
           },
           body: params,

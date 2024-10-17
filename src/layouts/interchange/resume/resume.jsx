@@ -28,34 +28,32 @@ const Resume = () => {
   const { MakeExchange } = Exchange();
 
   const notify = () => {
-    toast.error("Saldo insuficiente para el administrador o los balances han caducado.", {
-      position: "bottom-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    toast.error(
+      "Saldo insuficiente para el administrador o los balances han caducado.",
+      {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      }
+    );
   };
-
 
   const handleConfirm = async () => {
     console.log("Confirmo la transacción");
 
-      const errorOccurred = await MakeExchange();
-
+    const errorOccurred = await MakeExchange();
 
     if (errorOccurred) {
-      notify()
+      notify();
       console.log("Error al intercambiar");
       // navigate("/interchange");
       return;
     }
     openModal();
-   
-
-
 
     console.log("Valres que irian en la api v2", origin, final, amount);
   };
@@ -94,7 +92,7 @@ const Resume = () => {
         <div className="resume-content">
           <div className="amount">
             <p className="description">Monto a Intercambiar</p>
-            <p >
+            <p>
               {fromAmountResume} {origin}
             </p>
           </div>
@@ -140,25 +138,23 @@ const Resume = () => {
               <h1>Intercambio exitoso</h1>
               <p>Ya cuentas con los {final} en tu saldo.</p>
             </div>
-
-            
           </Modal>
         </div>
       </div>
 
       <ToastContainer
-                position="bottom-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-                transition={Bounce}
-              />
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
     </div>
   );
 };

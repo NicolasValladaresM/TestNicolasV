@@ -64,9 +64,15 @@ const customStyles = {
 const Interchange = () => {
   const { GetPricesData } = GetMultiPrices();
   const { usd, setUSD, usdt, setUSDT, btc, setBTC } = useContext(PricesContext);
-  const { setOrigin, setFinal, setAmount, setRate, setFromAmountResume, setToAmountResume } =
-    useContext(TransContext);
- 
+  const {
+    setOrigin,
+    setFinal,
+    setAmount,
+    setRate,
+    setFromAmountResume,
+    setToAmountResume,
+  } = useContext(TransContext);
+
   const [selectedFrom, setSelectedFrom] = useState("USD");
   const [selectedTo, setSelectedTo] = useState("USDT");
   const [fromAmount, setFromAmount] = useState("");
@@ -83,8 +89,6 @@ const Interchange = () => {
       setUSD(data.usd);
       setBTC(data.btc);
       setUSDT(data.usdt);
-
-      console.log("valor de dolar es ", usd);
     };
 
     fetchPrices();
@@ -181,7 +185,8 @@ const Interchange = () => {
       return;
     }
 
-    const availableBalance =parseFloat(balance[selectedFrom.toLowerCase()]) || 0;
+    const availableBalance =
+      parseFloat(balance[selectedFrom.toLowerCase()]) || 0;
     if (parseFloat(fromAmount) > availableBalance) {
       toast.error("El monto a intercambiar excede al saldo actual", {
         position: "bottom-right",
@@ -206,7 +211,7 @@ const Interchange = () => {
     //     draggable: true,
     //     progress: undefined,
     //   });
-    //   return; 
+    //   return;
     // }
 
     setOrigin(selectedFrom);
@@ -221,7 +226,6 @@ const Interchange = () => {
     };
     localStorage.setItem("transactionData", JSON.stringify(transactionData));
 
-    
     const valorRate = transactionData.toAmount / transactionData.fromAmount;
     setRate(valorRate);
 
@@ -265,8 +269,11 @@ const Interchange = () => {
                   min={selectedFrom === "BTC" ? "0.0004" : "0.0001"}
                   step="0.0001"
                   value={fromAmount}
-                  onChange={(e) => setFromAmount(e.target.value === "" ? "" : parseFloat(e.target.value))} 
-
+                  onChange={(e) =>
+                    setFromAmount(
+                      e.target.value === "" ? "" : parseFloat(e.target.value)
+                    )
+                  }
                 />
               </div>
             </div>
