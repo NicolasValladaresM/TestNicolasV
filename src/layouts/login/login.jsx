@@ -5,9 +5,20 @@ import useLogin from "../../services/getData";
 import eyeIcon from "../../assets/eye.svg";
 import eyeOffIcon from "../../assets/eye_off.svg";
 import checkIcon from "../../assets/check.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
 
 const Login = () => {
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      navigate("/home");
+    }
+  }, [navigate]);
+ 
+
   const {
     email,
     password,
@@ -22,7 +33,7 @@ const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(false);
 
-  const navigate = useNavigate();
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email || !password) {
