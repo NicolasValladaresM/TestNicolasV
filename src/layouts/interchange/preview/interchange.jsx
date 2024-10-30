@@ -117,7 +117,6 @@ const Interchange = () => {
   };
 
   useEffect(() => {
-    // setFromAmount(0);
     setToAmount(0);
   }, [selectedTo]);
 
@@ -199,20 +198,6 @@ const Interchange = () => {
       });
       return;
     }
-
-    //Control de error al abonar bitcoins
-    // if (selectedTo === "BTC") {
-    //   toast.error("Balance Insuficiente por administrador (error hacia bitcoin)", {
-    //     position: "bottom-right",
-    //     autoClose: 5000,
-    //     hideProgressBar: false,
-    //     closeOnClick: true,
-    //     pauseOnHover: true,
-    //     draggable: true,
-    //     progress: undefined,
-    //   });
-    //   return;
-    // }
 
     setOrigin(selectedFrom);
     setFinal(selectedTo);
