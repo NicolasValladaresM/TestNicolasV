@@ -138,3 +138,11 @@
   size: 100%;
   margin-right: 10%;
 }
+
+@media (max-width: 768px) {
+  .amico {
+    display: none;
+  }
+
+
+}

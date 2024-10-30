@@ -36,8 +36,7 @@ const Navbar = () => {
           Ayuda
         </button>
         <button
-          className="nav-button"
-          style={{ marginTop: "50%" }}
+          className="nav-button-logout"
           onClick={() => {
             logout();
             na("/");
