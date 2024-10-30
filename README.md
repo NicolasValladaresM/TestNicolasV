@@ -4,12 +4,19 @@
 
 ## 💿 Instalación
 
-Para instalar las dependencias, utilice el siguiente comando:
+### Necesitará tener instalado git:
+[git](https://git-scm.com/downloads)
+### Clonar el repositorio:
+git clone https://github.com/NicolasValladaresM/TestNicolasV.git
+
+### Ingresar al directorio:
+cd TestNicolasV
+
+### Para instalar las dependencias, utilice el siguiente comando:
 
 | Gestor de paquetes                                         | Comando        |
 | ---------------------------------------------------------- | -------------- |
 | [npm](https://docs.npmjs.com/cli/v10/commands/npm-install) | `npm install`  |
-
 
 
 ### Iniciando el servidor de desarrollo
