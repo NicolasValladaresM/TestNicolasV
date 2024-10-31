@@ -67,6 +67,23 @@
   transition: width 0.3s ease;
 }
 
+.nav-button-logout::before {
+  content: '';
+  position: absolute;
+  left: -2vw;
+  border-radius: 10px;
+  height: 40px;
+  width: 0;
+  z-index: -1;
+  background-color: #05BCB9;
+  transition: width 0.3s ease;
+}
+
+.nav-button-logout:hover::before {
+  width: 100%;
+
+}
+
 .nav-button:hover::before {
   width: 100%;
 
