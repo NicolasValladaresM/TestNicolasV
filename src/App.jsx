@@ -15,7 +15,6 @@ import { BalanceProvider } from "./context/balanceContext";
 import { HistoryProvider } from "./context/historicalContext";
 import { PricesProvider } from "./context/pricesContext";
 import { TransProvider } from "./context/transContext";
-// import { ExchangeRateProvider } from "./context/exchangeRateContext";
 
 const RouteProtected = ({ children }) => {
   const { user } = useContext(UserContext);
@@ -49,10 +48,7 @@ function App() {
                   <PricesProvider>
                     <BalanceProvider>
                       <TransProvider>
-                        {/* <ExchangeRateProvider> */}
-
                         <Interchange />
-                        {/* </ExchangeRateProvider> */}
                       </TransProvider>
                     </BalanceProvider>
                   </PricesProvider>

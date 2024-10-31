@@ -11,7 +11,7 @@ import GetMultiPrices from "../../../services/getMultiPrices";
 import { PricesContext } from "../../../context/pricesContext";
 import { TransContext } from "../../../context/transContext";
 import { useNavigate } from "react-router-dom";
-
+import { setUserStorage } from "../../../services/auth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Bounce } from "react-toastify";
@@ -209,7 +209,7 @@ const Interchange = () => {
       fromAmount,
       toAmount,
     };
-    localStorage.setItem("transactionData", JSON.stringify(transactionData));
+    setUserStorage(transactionData);
 
     const valorRate = transactionData.toAmount / transactionData.fromAmount;
     setRate(valorRate);

@@ -1,37 +1,21 @@
-import { useContext } from "react";
-import { InfoContext } from "../context/infoContext";
 
+import { getUserStorage } from "./auth";
+import http from "./httpAxiosRequest";
 const GetProfile = () => {
-  //const { info } =  useContext(InfoContext);
 
   const getDataProfile = async () => {
-    // console.log("Headers obtenidos", info);
 
-    // const accessToken = info.access_token;
-    // const uid = info.uid;
-    // const client = info.client;
-    // const expiry = info.expiry;
-    const user = JSON.parse(localStorage.getItem("user"));
+    const user = getUserStorage();
 
-    const accessToken = user.access_token;
-    const uid = user.uid;
-    const client = user.client;
-    const expiry = user.expiry;
+    if (!user) {
+      console.log("No se encontraron datos de usuario en localStorage");
+      return;
+    }
 
     try {
-      const response = await fetch("https://api.qa.vitawallet.io/api/profile", {
-        method: "GET",
-        headers: {
-          "app-name": "ANGIE",
-          "access-token": accessToken,
-          uid: uid,
-          client: client,
-          expiry: expiry,
-        },
-      });
-
-      const data = await response.json();
-      return data;
+      const response = await http.get("/profile")
+      return response.data;
+    
     } catch (error) {
       console.log("Error al obtener el perfil del usuario", error);
     }

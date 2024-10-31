@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-
+import { getUserStorage } from "../services/auth";
 export const UserContext = createContext();
 
 export const UserContextProvider = ({ children }) => {
@@ -7,9 +7,9 @@ export const UserContextProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
+    const { user: storedUser } = getUserStorage();
     if (storedUser) {
-      setUser(JSON.parse(storedUser));
+      setUser(storedUser);
     }
     setLoading(false);
   }, []);

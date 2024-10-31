@@ -1,20 +1,18 @@
 import { TransContext } from "../context/transContext";
 import { useContext } from "react";
+import { getUserStorage } from "../services/auth";
+import http from "../services/httpAxiosRequest";
 
 const Exchange = () => {
   const { origin, final, amount } = useContext(TransContext);
 
   const MakeExchange = async () => {
-    const user = JSON.parse(localStorage.getItem("user"));
+    const user = getUserStorage();
 
     if (!user) {
       console.log("No se encontraron datos de usuario en localStorage");
       return;
     }
-    const accessToken = user.access_token;
-    const uid = user.uid;
-    const client = user.client;
-    const expiry = user.expiry;
 
     try {
       if (origin && final && amount) {
@@ -23,25 +21,11 @@ const Exchange = () => {
 
         console.log("Valores de origin y final", origin, final);
 
-        const response = await fetch(
-          "https://api.qa.vitawallet.io/api/transactions/exchange",
-          {
-            method: "POST",
-            headers: {
-              "app-name": "ANGIE",
-              "access-token": accessToken,
-              uid: uid,
-              client: client,
-              expiry: expiry,
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              currency_sent: originLower,
-              currency_received: finalLower,
-              amount_sent: amount,
-            }),
-          }
-        );
+        const response = await http.post("/transactions/exchange", {
+          currency_sent: originLower,
+          currency_received: finalLower,
+          amount_sent: amount,
+        })
         const data = await response.json();
 
         if (!response.ok) {

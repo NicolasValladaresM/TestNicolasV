@@ -6,15 +6,16 @@ import eyeIcon from "../../assets/eye.svg";
 import eyeOffIcon from "../../assets/eye_off.svg";
 import checkIcon from "../../assets/check.svg";
 import { useEffect, useState } from "react";
+import { getUserStorage } from "../../services/auth";
 
 const Login = () => {
   const navigate = useNavigate();
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
+    const {user} = getUserStorage();
     if (user) {
       navigate("/home");
     }
-  }, [navigate]);
+  }, []);
 
   const {
     email,
