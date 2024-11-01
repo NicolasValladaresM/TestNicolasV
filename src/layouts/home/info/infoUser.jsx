@@ -1,7 +1,6 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import Balance from "../../../components/cardbalance/balance";
 import History from "../../../components/transactions/history";
-import GetBalance from "../../../services/getBalance";
 import coin from "/coin.png";
 import "./infoUser.css";
 import { BalanceContext } from "../../../context/balanceContext";

@@ -15,6 +15,7 @@ import { BalanceProvider } from "./context/balanceContext";
 import { HistoryProvider } from "./context/historicalContext";
 import { PricesProvider } from "./context/pricesContext";
 import { TransProvider } from "./context/transContext";
+import { useLocation } from "react-router-dom";
 
 const RouteProtected = ({ children }) => {
   const { user } = useContext(UserContext);

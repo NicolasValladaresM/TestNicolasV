@@ -2,15 +2,16 @@ import  useApiErrorHandler  from "../services/apiErrorHandler";
 import { BalanceContext } from "../context/balanceContext";
 import { useContext } from "react";
 import { getUserStorage } from "../services/auth";
+import { removeUserStorage } from "../services/auth";
 import http from "./httpAxiosRequest";
 const GetBalance = () => {
   const { handleApiResponse } = useApiErrorHandler();
   const { setName } = useContext(BalanceContext);
 
   const GetBalancesData = async () => {
-    const user = getUserStorage();
+    const { user, headers } = getUserStorage();
 
-    if (!user) {
+    if (!user || !headers) {
       console.log("No se encontraron datos de usuario en localStorage");
       return;
     }
@@ -24,6 +25,7 @@ const GetBalance = () => {
 
     } catch (error) {
       console.log("Error al obtener balances del usuario", error);
+      removeUserStorage();
     }
   };
   return { GetBalancesData };

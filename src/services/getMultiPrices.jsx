@@ -7,9 +7,9 @@ const GetMultiPrices = () => {
 
   const GetPricesData = async () => {
     
-    const user = getUserStorage().user;
+    const { user, headers } = getUserStorage();
 
-    if (!user) {
+    if (!user || !headers) {
       console.log("No se encontraron datos de usuario en localStorage");
       return;
     }

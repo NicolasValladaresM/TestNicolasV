@@ -1,5 +1,5 @@
 import loginImage from "/loginImage.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./login.css";
 import useLogin from "../../services/getData";
 import eyeIcon from "../../assets/eye.svg";
@@ -10,12 +10,16 @@ import { getUserStorage } from "../../services/auth";
 
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
   useEffect(() => {
-    const {user} = getUserStorage();
-    if (user) {
+    const { user } = getUserStorage();
+    if (user && location.pathname === "/login") {
       navigate("/home");
     }
   }, []);
+  
+  
 
   const {
     email,

@@ -1,6 +1,7 @@
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { Bounce } from "react-toastify";
+import { removeUserStorage } from "./auth";
 
 const useApiErrorHandler = () => {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ const useApiErrorHandler = () => {
       console.log("Error 401: Sesión expirada");
 
       setTimeout(() => {
+        removeUserStorage();
         navigate("/login");
       }, 3000);
       throw new Error("Error 401: Sesión expirada");

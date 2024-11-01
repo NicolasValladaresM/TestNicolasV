@@ -6,9 +6,9 @@ const GetHistorical = () => {
   const { handleApiResponse } = useApiErrorHandler();
  
   const GetHistoryProfile = async () => {
-    const user = getUserStorage();
+    const { user, headers } = getUserStorage();
 
-    if (!user) {
+    if (!user || !headers) {
       console.log("No se encontraron datos de usuario en localStorage");
       return;
     }

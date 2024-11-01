@@ -6,12 +6,18 @@ export const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+
+  const saveUser = () => {
     const { user: storedUser } = getUserStorage();
     if (storedUser) {
       setUser(storedUser);
     }
     setLoading(false);
+  };
+
+  useEffect(() => {
+     saveUser();
+    
   }, []);
 
   if (loading) {
